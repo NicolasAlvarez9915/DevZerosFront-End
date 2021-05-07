@@ -1,0 +1,35 @@
+/*.Cuerpo{
+    border-bottom-style: solid;
+    border-bottom-width: .1rem;
+    border-bottom-color:  rgb(250, 81, 81);
+}*/
+a{
+    border-radius: 18px;
+}
+a:hover{
+    text-decoration: none;
+    background-color:  rgb(12, 47, 75);
+    margin-top: -0.1rem;
+    box-shadow: 10px 10px 5px 0px rgb(89, 149, 198);
+    transition: all 0.3s;
+}
+
+.Cuerpo{
+    padding-top: .1rem;
+    min-height: 11vh;
+}
+.Ocultar{
+    display: none;
+}
+.Mostrar{
+    display: block;
+}
+
+*{
+    font-family: 'Poppins';
+}
+
+
+span{
+    margin-right: .5rem;
+}

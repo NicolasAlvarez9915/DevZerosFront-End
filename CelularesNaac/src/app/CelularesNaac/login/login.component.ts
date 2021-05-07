@@ -63,11 +63,11 @@ export class LoginComponent implements OnInit {
       data => {
         this.authenticationService.currentUser.subscribe(x => {
           if(x != null){
-            alert("Session Iniciada");
-            /*if (x.rol == "Administrador") {
-              this.router.navigate(['/Perfil']);
+            this.router.navigate(['/PerfilLiderAvaluos']);
+            /*if (x.rol == "LiderAvaluos") {
+              this.router.navigate(['/PerfilLiderAvaluos']);
             } else {
-              this.router.navigate(['/PerfilCliente']);
+              //this.router.navigate(['/PerfilCliente']);
             }*/
           }
         });

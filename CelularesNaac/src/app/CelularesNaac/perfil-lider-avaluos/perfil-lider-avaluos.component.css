@@ -1,0 +1,43 @@
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background-color:  rgb(12, 47, 75);
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#content {
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+.TituloBarra{
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+    display: flex;
+    justify-content: center;
+}
+
+hr{
+    background-color: rgb(191, 191, 191);
+    height: 2px;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+}

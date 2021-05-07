@@ -1,0 +1,18 @@
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <div id="sidebar" [ngClass]="{'active':  activa}">
+        <div class="TituloBarra">
+            <h5><span class="fas fa-user-cog"></span>Lider Avaluos</h5>
+        </div>
+        <hr>
+    </div>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+        <div class="navbar-header">
+            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" (click)="activa = !activa">
+                <span>Menu</span>
+            </button>
+        </div>
+    </div>
+</div>
