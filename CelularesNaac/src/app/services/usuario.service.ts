@@ -12,16 +12,6 @@ export class UsuarioService {
   baseUrl: string = "https://localhost:5001/";
   constructor(private http: HttpClient,private handleErrorService: HandleHttpErrorService) { }
 
-  probarApi(): Observable<any>
-  {
-    var respuesta = this.http.get<any>(this.baseUrl+'api/Usuario')
-    .pipe(
-      tap(_ => this.handleErrorService.log('Encontrado')),
-      catchError(this.handleErrorService.handleError<String>('Buscar Administrador', null))
-    );
-    return respuesta;
-  }
-
 
   Todos(): Observable<Usuario[]>
   {

@@ -7,12 +7,16 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './CelularesNaac/login/login.component';
 import { JwtInterceptor } from './services/jwt.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PerfilLiderAvaluosComponent } from './CelularesNaac/perfil-lider-avaluos/perfil-lider-avaluos.component';
+import { BarraNavegacionComponent } from './barra-navegacion/barra-navegacion.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    PerfilLiderAvaluosComponent,
+    BarraNavegacionComponent
   ],
   imports: [
     BrowserModule,

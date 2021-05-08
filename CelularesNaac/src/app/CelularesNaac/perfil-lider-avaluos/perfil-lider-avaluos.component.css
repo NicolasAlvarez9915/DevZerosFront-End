@@ -1,0 +1,86 @@
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background-color:  rgb(12, 47, 75);
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#content {
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+.TituloBarra{
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+    display: flex;
+    justify-content: center;
+}
+
+hr{
+    background-color: rgb(191, 191, 191);
+    height: 2px;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+}
+
+.btnbarra{
+    height: 3rem;
+    color: rgb(255, 255, 255);
+    font-size: .4cm;
+    background: transparent;
+    border: none;
+    text-align: start;
+}
+
+
+.btnbarra:hover{
+    color: black;
+    background-color: rgb(114, 186, 245);
+    text-decoration: none;
+    transition: all 0.3s;
+}
+.btnbarra:focus {
+    outline: none; 
+}
+
+.spanBarra{
+    padding-right: 1rem;
+}
+
+.Cuerpo{
+    justify-content: center;
+}
+
+.btnMenu{
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+
+.btnMenu:hover{
+    background-color:  rgb(12, 47, 75);
+    color: #fff;
+    transition: all 0.3s;
+}
+
+.barraTituloContenido{
+    color: black;
+}
