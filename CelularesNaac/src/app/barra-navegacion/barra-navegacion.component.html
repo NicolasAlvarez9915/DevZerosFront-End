@@ -1,11 +1,10 @@
-<header class="Cuerpo" style="background-color:   rgb(114, 186, 245);">
+<header class="Cuerpo" style="background-color:   rgb(78, 95, 252);height: 12vh;">
 
   <nav class="navbar navbar-expand-lg navbar-light" style="margin-left: 1rem; margin-right: 1rem;">
-    <div class=" row justify-content-center logo" style="
-    width: 255px;">
+    <div class="row justify-content-center logo" style="width: 255px;">
       <a class="" [routerLink]="['/']" style="max-width: 100px;">
-        <img src="assets/png-clipart-graphy-computer-icons-hand-holding-a-cell-phone-miscellaneous-text.png" style="border-radius: 25%;"
-            width="80" height="60" alt="" loading="lazy">
+        <img src="assets/png-clipart-graphy-computer-icons-hand-holding-a-cell-phone-miscellaneous-text.png"
+          style="border-radius: 25%;" width="80" height="60" alt="" loading="lazy">
       </a>
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
@@ -13,8 +12,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
+    <div class="botones row collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="col navbar-nav mr-auto mt-2 mt-lg-0 ">
         <li class="nav-item">
           <a class="nav-link text-white" id="Prueba" [routerLink]="['/']"><span class="fas fa-home"></span> INICIO</a>
         </li>
@@ -26,19 +25,22 @@
           <a class="nav-link text-white" [routerLink]="['/']"> <span class="far fa-comments"></span>CONTACTANOS</a>
         </li>
       </ul>
-      <ul class="navbar-nav ml-auto d-felx">
-        <li class="nav-item text-white">
-          <a class="nav-link text-white" (click)="RedirigirPerfil()"><span class="fas fa-user-circle"></span>PERFIL</a>
-        </li>
-        <li class="nav-item text-white" [routerLinkActive]="['link-active']"  >
-          <a class="nav-item nav-link text-white" (click)="logout()" *ngIf="currentUser"> <span
-              class="fas fa-sign-out-alt"></span>LOGOUT</a>
-        </li>
-        <li class="nav-item text-white" [routerLinkActive]="['link-active']"  >
-          <a class="nav-item nav-link text-white" [routerLink]="['/Login']" *ngIf="!currentUser"><span
-              class="fas fa-sign-in-alt"></span>LOGIN</a>
-        </li>
-      </ul>
+      <div class="col">
+        <ul class="justify-content-end navbar-nav ml-auto">
+          <li class="nav-item text-white">
+            <a class="nav-link text-white" (click)="RedirigirPerfil()"><span
+                class="fas fa-user-circle"></span>PERFIL</a>
+          </li>
+          <li class="nav-item text-white" [routerLinkActive]="['link-active']"  >
+            <a class="nav-item nav-link text-white" (click)="logout()" *ngIf="currentUser"> <span
+                class="fas fa-sign-out-alt"></span>LOGOUT</a>
+          </li>
+          <li class="nav-item text-white" [routerLinkActive]="['link-active']"  >
+            <a class="nav-item nav-link text-white" [routerLink]="['/Login']" *ngIf="!currentUser"><span
+                class="fas fa-sign-in-alt"></span>LOGIN</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 </header>

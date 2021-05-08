@@ -2,17 +2,243 @@
     <!-- Sidebar Holder -->
     <div id="sidebar" [ngClass]="{'active':  activa}">
         <div class="TituloBarra">
-            <h5><span class="fas fa-user-cog"></span>Lider Avaluos</h5>
+            <h5><span class="fas fa-user-cog spanBarra"></span>Lider Avaluos</h5>
         </div>
         <hr>
+        <p>
+            <button class="btnbarra" style="width: 100%; " type="bootton" data-toggle="collapse"
+                data-target="#collapseOpsClientes" aria-expanded="false" aria-controls="collapseOpsClientes">
+                <span class="fas fa-users spanBarra"></span>Clientes
+            </button>
+        </p>
+        <div class=" collapse OpsMenu" id="collapseOpsClientes">
+            <hr>
+            <button class="btnbarra" style="width: 100%; " type="bootton" data-toggle="collapse"
+                data-target="#collapseOpsClientes" aria-expanded="false" aria-controls="collapseOpsClientes"
+                (click)="mostrar ='RegistrarCliente';">
+                <span class="fas fa-user-plus spanBarra"></span>Registrar
+            </button>
+            <button class="btnbarra" style="width: 100%; " type="bootton" data-toggle="collapse"
+                data-target="#collapseOpsClientes" aria-expanded="false" aria-controls="collapseOpsClientes"
+                (click)="mostrar = 'Clientes';mostrarInterno='Cliente';">
+                <span class="fas fa-users spanBarra"></span>Lista
+            </button>
+            <hr>
+        </div>
+        <p>
+            <button class="btnbarra" style="width: 100%; " type="bootton" data-toggle="collapse"
+                data-target="#collapseOpsProveedores" aria-expanded="false" aria-controls="collapseOpsProveedores">
+                <span class="fas fa-parachute-box spanBarra"></span>Proveedores
+            </button>
+        </p>
+        <div class=" collapse OpsMenu" id="collapseOpsProveedores">
+            <hr>
+            <button class="btnbarra" style="width: 100%; " type="bootton" data-toggle="collapse"
+                data-target="#collapseOpsProveedores" aria-expanded="false" aria-controls="collapseOpsProveedores"
+                (click)="mostrar ='RegistrarProveedor';">
+                <span class="fas fa-parachute-box spanBarra"></span>Registrar
+            </button>
+            <button class="btnbarra" style="width: 100%; " type="bootton" data-toggle="collapse"
+                data-target="#collapseOpsProveedores" aria-expanded="false" aria-controls="collapseOpsProveedores"
+                (click)="mostrar = 'Proveedores';mostrarInterno='Proveedor';">
+                <span class="fas fa-parachute-box spanBarra"></span>Lista
+            </button>
+            <hr>
+        </div>
     </div>
 
     <!-- Page Content Holder -->
-    <div id="content">
+    <div id="content" style="width: 100%;">
         <div class="navbar-header">
-            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" (click)="activa = !activa">
-                <span>Menu</span>
-            </button>
+            <div class="row barraTituloContenido">
+                <div class="col" style="max-width: 50px;">
+                    <button type="button" id="sidebarCollapse" class="btn btnMenu"
+                        style="border-radius: 50%; margin-top: .1rem;" (click)="activa = !activa">
+                        <span class="fas fa-bars" style="margin-right: 0rem;"></span>
+                    </button>
+                </div>
+                <div class="col text-center" style="margin-top: .1rem; max-width: 100%;">
+                    <h4>Prueba</h4>
+                </div>
+                <hr>
+            </div>
+            <div *ngIf="mostrar == 'RegistrarCliente'">
+                <div class="row  container-fluid justify-content-center">
+                    <form class="col" style="max-width: 400px;" [formGroup]="formularioRegistroInteresado">
+                        <div class="text-center">
+                            <h5>Registrar cliente</h5>
+                        </div>
+                        <hr>
+                        <div class="col">
+                            <label for="">Identificacion</label>
+                            <input type="text"  name="identificacion"  placeholder="identificacion" class="form-control"
+                                formControlName="identificacion"
+                                 [ngClass]="{'is-invalid':  control.identificacion.touched && control.identificacion.errors}" />
+                            <div *ngIf="control.identificacion.errors" class="invalid-feedback">
+                                <div *ngIf="control.identificacion.errors.required">Se require la identificacion
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="LblNameAdministrador">Nombres</label>
+                            <input type="Text" id="LblNameAdministrador" class="form-control" placeholder="Nombres"
+                                formControlName="nombres"
+                                [ngClass]="{'is-invalid':  control.nombres.errors  && control.nombres.touched}">
+                            <div *ngIf="control.nombres.errors" class="invalid-feedback">
+                                <div *ngIf="control.nombres.errors.required">Se requiren los nombres</div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label>Apellidos</label>
+                            <input type="text"  name="apellidos"  placeholder="Apellidos" class="form-control"
+                                formControlName="apellidos"
+                                 [ngClass]="{'is-invalid':  control.apellidos.touched && control.apellidos.errors}" />
+                            <div *ngIf="control.apellidos.errors" class="invalid-feedback">
+                                <div *ngIf="control.apellidos.errors.required">Se requiren los apellidos</div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="">Telefono</label>
+                            <input type="text" class="form-control" placeholder="Telefono" required="" autofocus=""
+                                _mstplaceholder="868153" formControlName="telefono"
+                                 [ngClass]="{'is-invalid':  control.telefono.touched && control.telefono.errors}">
+                            <div *ngIf="control.telefono.errors" class="invalid-feedback">
+                                <div *ngIf="control.telefono.errors.required">Se require el correo</div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col d-flex justify-content-end">
+                                <button class="btn btn-outline-primary" style="width: 50%;" type="submit"
+                                    (click)="onSubmit()"   [disabled]="formularioRegistroInteresado.invalid">
+                                    <span class="fas fa-user-plus"></span> Registrar
+                                </button>
+                            </div>
+
+                            <div class="col d-flex justify-content-star">
+                                <button class="btn btn-outline-dark" style="width: 50%;" type="reset"
+                                    (click)="mostrar = 'Principal'">
+                                    <span class="fas fa-chevron-left"></span>Volver
+                                </button>
+                            </div>
+                        </div>
+                        <hr style="visibility: hidden;">
+                    </form>
+                </div>
+            </div>
+            <div *ngIf="mostrar == 'Clientes'">
+                <div class="Cuerpo">
+                    <form class="col font-weight-normal">
+                        <div class="text-center" style="margin-top: 1rem;">
+                            <h5>Clientes</h5>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <label>Filtro por identificacion.</label>
+                                <input class="form-control col-5" type="text" style="width: 200px;"
+                                    placeholder="Identificacion" [(ngModel)]="filtroClientes"
+                                    [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="col d-flex justify-content-end" style="padding-top: 2rem;">
+                                <button class="btn btn-outline-dark" style="width: 50%;" type="reset"
+                                    (click)="mostrar = 'Principal'">
+                                    <span class="fas fa-chevron-left"></span>Volver
+                                </button>
+                            </div>
+                        </div>
+
+                        <hr style="visibility: hidden;">
+
+                        <div class="text-center" *ngIf="listaClientes.length == 0">
+                            <h4>¡NO HAY CLIENTES REGISTRADOS!</h4>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-responsive" *ngIf='listaClientes && listaClientes.length'>
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Identificación</th>
+                                        <th scope="col">Nombres </th>
+                                        <th scope="col">Apellidos </th>
+                                        <th scope="col">Telefono</th>
+                                        <th scope="col">Fecha de ingreso</th>
+                                        <th scope="col">opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let cliente of listaClientes; index as i">
+                                        <th scope="row">{{ i + 1 }}</th>
+                                        <td>{{ cliente.identificacion }} </td>
+                                        <td>{{ cliente.nombres }}</td>
+                                        <td>{{ cliente.apellidos }}</td>
+                                        <td>{{ cliente.telefono }}</td>
+                                        <td>{{ cliente.fechaRegistro }}</td>
+                                        <td><button class="btn btn-outline-primary"
+                                                (click)="verCliente(cliente)">ver</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
+                    </form>
+                </div>
+            </div>
+            <div *ngIf="mostrar == 'Cliente'">
+                <div class="Cuerpo">
+                    <form>
+                        <div class="text-center" style="margin-top: 1rem;">
+                            <h5>Cliente: {{clienteConsuta.nombres}} {{clienteConsuta.apellidos}},
+                                {{clienteConsuta.identificacion}}</h5>
+                        </div>
+                        <hr>
+                        <div class="info">
+                            <h5>Informacion de contacto.</h5>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="LblTelefono">Telefono fijo o movil: </label>
+                                </div>
+                                <div class="col">
+                                    <p>
+                                        {{clienteConsuta.telefono}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col d-flex justify-content-end">
+                            <button class="btn btn-outline-dark" (click)="mostrar = 'Clientes'">
+                                <span class="fas fa-chevron-left"></span> Volver
+                            </button>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label for="LblNameAdministrador">Nombres</label>
+                                <input type="Text" name="nombres" id="LblNameAdministrador" [(ngModel)]="clienteActualizar.nombres" class="form-control"
+                                    placeholder="Nombres" />
+                            </div>
+                            <div class="col">
+                                <label>Apellidos</label>
+                                <input type="text"  name="apellidos"  placeholder="Apellidos" [(ngModel)]="clienteActualizar.apellidos" class="form-control" />
+                            </div>
+                            <div class="col">
+                                <label for="">Telefono</label>
+                                <input type="text" class="form-control" placeholder="Telefono" name="telefono" [(ngModel)]="clienteActualizar.telefono"
+                                    _mstplaceholder="868153" />
+                            </div>
+                            <div class="col">
+                                <label for="" class="row" style="visibility: hidden;">Telefono</label>
+                                <button (click)="actualizarCliente()" class="btn btn-outline-primary" type="submit">
+                                    <span class="fas fa-user-plus"></span> Actualizar
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
