@@ -13,12 +13,20 @@ export class UsuarioService {
   constructor(private http: HttpClient,private handleErrorService: HandleHttpErrorService) { }
 
 
-  Todos(): Observable<Usuario[]>
+  Registrar(usuario: Usuario): Observable<Usuario>
   {
-    return this.http.get<Usuario[]>(this.baseUrl+'api/Usuario')
+    return this.http.post<Usuario>(this.baseUrl+'api/Usuario',usuario)
     .pipe(
       tap(_ => this.handleErrorService.log('Encontrado')),
-      catchError(this.handleErrorService.handleError<Usuario[]>('Buscar Clientes', null))
+      catchError(this.handleErrorService.handleError<Usuario>('Buscar Clientes', null))
+    );
+  }
+
+  buscar(correo: string): Observable<Usuario>{
+    return this.http.get<Usuario>(this.baseUrl+'api/Usuario/'+correo)
+    .pipe(
+      tap(_ => this.handleErrorService.log('Encontrado')),
+      catchError(this.handleErrorService.handleError<Usuario>('Buscar Clientes', null))
     );
   }
 }

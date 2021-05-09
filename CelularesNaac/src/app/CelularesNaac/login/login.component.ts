@@ -63,12 +63,11 @@ export class LoginComponent implements OnInit {
       data => {
         this.authenticationService.currentUser.subscribe(x => {
           if(x != null){
-            this.router.navigate(['/PerfilLiderAvaluos']);
-            /*if (x.rol == "LiderAvaluos") {
+            if (x.rol == "Lider Avaluos") {
               this.router.navigate(['/PerfilLiderAvaluos']);
             } else {
               //this.router.navigate(['/PerfilCliente']);
-            }*/
+            }
           }
         });
       },

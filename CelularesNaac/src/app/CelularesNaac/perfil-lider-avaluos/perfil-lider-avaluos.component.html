@@ -40,8 +40,13 @@
             </button>
             <button class="btnbarra" style="width: 100%; " type="bootton" data-toggle="collapse"
                 data-target="#collapseOpsProveedores" aria-expanded="false" aria-controls="collapseOpsProveedores"
-                (click)="mostrar = 'Proveedores';mostrarInterno='Proveedor';">
+                (click)="mostrar = 'Proveedores'">
                 <span class="fas fa-parachute-box spanBarra"></span>Lista
+            </button>
+            <button class="btnbarra" style="width: 100%; " type="bootton" data-toggle="collapse"
+                data-target="#collapseOpsProveedores" aria-expanded="false" aria-controls="collapseOpsProveedores"
+                (click)="mostrar ='RegistrarCompra';">
+                <span class="fas fa-parachute-box spanBarra"></span>RegistrarCompra
             </button>
             <hr>
         </div>
@@ -103,7 +108,25 @@
                                 _mstplaceholder="868153" formControlName="telefono"
                                  [ngClass]="{'is-invalid':  control.telefono.touched && control.telefono.errors}">
                             <div *ngIf="control.telefono.errors" class="invalid-feedback">
-                                <div *ngIf="control.telefono.errors.required">Se require el correo</div>
+                                <div *ngIf="control.telefono.errors.required">Se require el telefono</div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="">Correo</label>
+                            <input type="text" class="form-control" placeholder="Correo" required="" autofocus=""
+                                _mstplaceholder="868153" formControlName="correo"
+                                 [ngClass]="{'is-invalid':  control.correo.touched && control.correo.errors}">
+                            <div *ngIf="control.correo.errors" class="invalid-feedback">
+                                <div *ngIf="control.correo.errors.required">Se require el correo</div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="">Conntraseña</label>
+                            <input type="text" class="form-control" placeholder="Conntrasena" required="" autofocus=""
+                                _mstplaceholder="868153" formControlName="contrasena"
+                                 [ngClass]="{'is-invalid':  control.contrasena.touched && control.contrasena.errors}">
+                            <div *ngIf="control.contrasena.errors" class="invalid-feedback">
+                                <div *ngIf="control.contrasena.errors.required">Se require el contraseña</div>
                             </div>
                         </div>
                         <hr>
@@ -216,17 +239,19 @@
                         <div class="row">
                             <div class="col">
                                 <label for="LblNameAdministrador">Nombres</label>
-                                <input type="Text" name="nombres" id="LblNameAdministrador" [(ngModel)]="clienteActualizar.nombres" class="form-control"
+                                <input type="Text" name="nombres" id="LblNameAdministrador"
+                                    [(ngModel)]="clienteActualizar.nombres" class="form-control"
                                     placeholder="Nombres" />
                             </div>
                             <div class="col">
                                 <label>Apellidos</label>
-                                <input type="text"  name="apellidos"  placeholder="Apellidos" [(ngModel)]="clienteActualizar.apellidos" class="form-control" />
+                                <input type="text"  name="apellidos"  placeholder="Apellidos"
+                                    [(ngModel)]="clienteActualizar.apellidos" class="form-control" />
                             </div>
                             <div class="col">
                                 <label for="">Telefono</label>
-                                <input type="text" class="form-control" placeholder="Telefono" name="telefono" [(ngModel)]="clienteActualizar.telefono"
-                                    _mstplaceholder="868153" />
+                                <input type="text" class="form-control" placeholder="Telefono" name="telefono"
+                                    [(ngModel)]="clienteActualizar.telefono" _mstplaceholder="868153" />
                             </div>
                             <div class="col">
                                 <label for="" class="row" style="visibility: hidden;">Telefono</label>
@@ -239,6 +264,700 @@
                     </form>
                 </div>
             </div>
+            <div *ngIf="mostrar == 'RegistrarProveedor'">
+                <div class="row  container-fluid justify-content-center">
+                    <form class="col" style="max-width: 400px;" [formGroup]="formularioRegistroProveedor">
+                        <div class="text-center">
+                            <h5>Registrar Proveedor</h5>
+                        </div>
+                        <hr>
+                        <div class="col">
+                            <label for="">Nit</label>
+                            <input type="text"  name="Nit"  placeholder="Nit" class="form-control" formControlName="nit"
+                                 [ngClass]="{'is-invalid':  controlProveedor.nit.touched && controlProveedor.nit.errors}" />
+                            <div *ngIf="controlProveedor.nit.errors" class="invalid-feedback">
+                                <div *ngIf="controlProveedor.nit.errors.required">Se require el Nit
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="LblNameAdministrador">Nombre</label>
+                            <input type="Text" id="LblNameAdministrador" class="form-control" placeholder="Nombre"
+                                formControlName="nombre"
+                                [ngClass]="{'is-invalid':  controlProveedor.nombre.errors  && controlProveedor.nombre.touched}">
+                            <div *ngIf="controlProveedor.nombre.errors" class="invalid-feedback">
+                                <div *ngIf="controlProveedor.nombre.errors.required">Se require el nombre</div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col d-flex justify-content-end">
+                                <button class="btn btn-outline-primary" style="width: 50%;" type="submit"
+                                    (click)="onSubmitProveedor()"   [disabled]="formularioRegistroProveedor.invalid">
+                                    <span class="fas fa-user-plus"></span> Registrar
+                                </button>
+                            </div>
+
+                            <div class="col d-flex justify-content-star">
+                                <button class="btn btn-outline-dark" style="width: 50%;" type="reset"
+                                    (click)="mostrar = 'Principal'">
+                                    <span class="fas fa-chevron-left"></span>Volver
+                                </button>
+                            </div>
+                        </div>
+                        <hr style="visibility: hidden;">
+                    </form>
+                </div>
+            </div>
+            <div *ngIf="mostrar == 'Proveedores'">
+                <div class="Cuerpo">
+                    <form class="col font-weight-normal">
+                        <div class="text-center" style="margin-top: 1rem;">
+                            <h5>Proveedores</h5>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <label>Filtro por nit.</label>
+                                <input class="form-control col-5" type="text" style="width: 200px;" placeholder="Nit"
+                                    [(ngModel)]="filtroProveedores" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="col d-flex justify-content-end" style="padding-top: 2rem;">
+                                <button class="btn btn-outline-dark" style="width: 50%;" type="reset"
+                                    (click)="mostrar = 'Principal'">
+                                    <span class="fas fa-chevron-left"></span>Volver
+                                </button>
+                            </div>
+                        </div>
+
+                        <hr style="visibility: hidden;">
+
+                        <div class="text-center" *ngIf="listaProveedores.length == 0">
+                            <h4>¡NO HAY CLIENTES REGISTRADOS!</h4>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-responsive" *ngIf='listaProveedores && listaProveedores.length'>
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nit </th>
+                                        <th scope="col">Nombre </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let proveedor of listaProveedores; index as i">
+                                        <th scope="row">{{ i + 1 }}</th>
+                                        <td>{{ proveedor.nit }} </td>
+                                        <td>{{ proveedor.nombre }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
+                    </form>
+                </div>
+            </div>
+            <div *ngIf="mostrar == 'RegistrarCompra'">
+                <div class="row  container-fluid justify-content-center">
+                    <form class="col">
+                        <div class="text-center">
+                            <h5>Registrar Compra</h5>
+                        </div>
+                        <hr>
+                        <div class="Cuerpo">
+                            <form class="font-weight-normal col" id="" style="margin-top: 1rem;">
+                                <div>
+                                    <div class=" row">
+                                        <div class="col">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <h5 class="card-title"><span
+                                                                    class="fas fa-user"></span>Proveedor.</h5>
+                                                            <hr>
+                                                            <div class="col">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <label for="">Nit</label>
+                                                                        <input type="text"  name="Nit"  placeholder="Nit"
+                                                                            class="form-control"
+                                                                            [(ngModel)]="nitProveedorBuscar" />
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <label for="" class="row"
+                                                                            style="visibility: hidden;">Telefono</label>
+                                                                        <button class="btn btn-outline-primary"
+                                                                            style=" max-height: min-content;"
+                                                                            type="submit"   (click)="buscarProveedor()">
+                                                                            <span class="fas fa-user-plus"></span>
+                                                                            Buscar
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                <hr style="visibility: hidden;">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <p>
+                                                                            Nombre:
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <p>
+                                                                            {{proveedorEncontrado.nombre}}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <h5 class="card-title"><span
+                                                                    class="fas fa-calendar-alt"></span>Fecha.
+                                                            </h5>
+                                                            <hr>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <p>
+                                                                        Fecha:
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <p *ngIf ="facturaCompraGenerada">
+                                                                        {{facturaCompraGenerada.fechaFactura}}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="visibility: hidden;">
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="col d-flex justify-content-center">
+                                            <button class="btn btn-outline-dark" data-toggle="collapse"
+                                                data-target="#AñadirProductoPedido" aria-expanded="false"
+                                                aria-controls="AñadirProductoPedido">
+                                                <span class="fas fa-search"></span> Añadir producto
+                                            </button>
+                                        </div>
+                                        <div class="col d-flex justify-content-center">
+                                            <button class="btn btn-outline-dark" (click)="registrarFactura()">
+                                                <span class="fas fa-search"></span> Registrar Factura
+                                            </button>
+                                        </div>
+                                        <div class="col d-flex justify-content-center">
+                                            <button class="btn btn-outline-dark" (click)="mostrar = 'Principal';">
+                                                <span class="icon-arrow-left1"></span>Volver
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="collapse" id="AñadirProductoPedido">
+                                        <hr style="visibility: hidden;">
+                                        <div class="col">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title"><span class="fas fa-plus"></span>Producto.
+                                                    </h5>
+                                                    <hr>
+                                                    <div style="margin-bottom: .5rem; font-size: .4cm;">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label>Referencia:</label>
+                                                                <input type="text"  name="BuscarProducto"
+                                                                    [(ngModel)]="codigoDispositivo"
+                                                                    class="form-control" />
+                                                            </div>
+                                                            <div class="col">
+                                                                <hr style="visibility: hidden;">
+                                                                <button class="btn btn-outline-dark"
+                                                                    (click)="buscarDispositivo()">
+                                                                    <span class="fas fa-search"
+                                                                        style="margin-right: 0rem;"></span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+
+                                                        <form action="" *ngIf="dispositivoInexistente"
+                                                            [formGroup]="formularioRegistroDispositivo">
+
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="col" style="min-width: 100px;">
+                                                                        <input type="file" class="d-none"
+                                                                            (change)="onPhotoSelected($event)"
+                                                                            #photoInput>
+                                                                        <img [src]="selectedFile || 'assets/images.png'"
+                                                                            class="img-fluid" width="200px"
+                                                                            alt="no imagen"
+                                                                            (click)="photoInput.click()">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <p>
+                                                                                Marca:
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <input type="text"  name="Marca"
+                                                                                class="form-control"
+                                                                                formControlName="marca"
+                                                                                 [ngClass]="{'is-invalid':  controlDispositivo.marca.touched && controlDispositivo.marca.errors}" />
+
+                                                                            <div *ngIf="controlDispositivo.marca.errors" class="invalid-feedback">
+                                                                                <div *ngIf="controlDispositivo.marca.errors.required">
+                                                                                    <p>
+                                                                                        Se require la marca
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <p>
+                                                                                Modelo:
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <input type="text"  name="Modelo"
+                                                                                class="form-control"
+                                                                                formControlName="modelo"
+                                                                                 [ngClass]="{'is-invalid':  controlDispositivo.modelo.touched && controlDispositivo.modelo.errors}" />
+
+                                                                            <div *ngIf="controlDispositivo.modelo.errors" class="invalid-feedback">
+                                                                                <div *ngIf="controlDispositivo.modelo.errors.required">
+                                                                                    <p>
+                                                                                        Se require el modelo
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <p>
+                                                                                Precio Compra:
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <input type="number"  name="PrecioCompra"
+                                                                                class="form-control"
+                                                                                formControlName="precioCompra"
+                                                                                 [ngClass]="{'is-invalid':  controlDispositivo.precioCompra.touched && controlDispositivo.precioCompra.errors}" />
+
+                                                                            <div *ngIf="controlDispositivo.precioCompra.errors" class="invalid-feedback">
+                                                                                <div *ngIf="controlDispositivo.precioCompra.errors.required">
+                                                                                    <p>
+                                                                                        Se require el precio de compra
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            <p>
+                                                                                Precio Venta:
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col">
+
+                                                                            <input type="number"  name="PrecioVenta"
+                                                                                class="form-control"
+                                                                                formControlName="precioVenta"
+                                                                                 [ngClass]="{'is-invalid':  controlDispositivo.precioVenta.touched && controlDispositivo.precioVenta.errors}" />
+
+                                                                            <div *ngIf="controlDispositivo.precioVenta.errors" class="invalid-feedback">
+                                                                                <div *ngIf="controlDispositivo.precioVenta.errors.required">
+                                                                                    <p>
+                                                                                        Se require el precio de venta
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col">
+                                                                            Cantidad
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <input type="number"  name="Cantidad"
+                                                                                class="form-control"
+                                                                                formControlName="cantidad"
+                                                                                 [ngClass]="{'is-invalid':  controlDispositivo.cantidad.touched && controlDispositivo.cantidad.errors}" />
+
+                                                                            <div *ngIf="controlDispositivo.cantidad.errors" class="invalid-feedback">
+                                                                                <div *ngIf="controlDispositivo.cantidad.errors.required">
+                                                                                    <p>
+                                                                                        Se require la cantidad
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row" style="margin-top: 8px;">
+                                                                        <div class="col">
+                                                                            <p>
+                                                                                Tipo Pantalla:
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <input type="text"  name="TipoPantalla"
+                                                                                class="form-control"
+                                                                                formControlName="tipoPantalla"
+                                                                                 [ngClass]="{'is-invalid':  controlDispositivo.tipoPantalla.touched && controlDispositivo.tipoPantalla.errors}" />
+
+                                                                            <div *ngIf="controlDispositivo.tipoPantalla.errors" class="invalid-feedback">
+                                                                                <div *ngIf="controlDispositivo.tipoPantalla.errors.required">
+                                                                                    <p>
+                                                                                        Se require el tipo de la
+                                                                                        pantalla
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <p>
+                                                                                    Resolucion:
+                                                                                </p>
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <input type="text"  name="Resolucion"
+                                                                                    class="form-control"
+                                                                                    formControlName="resolucion"
+                                                                                     [ngClass]="{'is-invalid':  controlDispositivo.resolucion.touched && controlDispositivo.resolucion.errors}" />
+
+                                                                                <div *ngIf="controlDispositivo.resolucion.errors" class="invalid-feedback">
+                                                                                    <div *ngIf="controlDispositivo.resolucion.errors.required">
+                                                                                        <p>
+                                                                                            Se require la resolucion
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <p>
+                                                                                    Camara
+                                                                                </p>
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <input type="text"  name="Camara"
+                                                                                    class="form-control"
+                                                                                    formControlName="camara"
+                                                                                     [ngClass]="{'is-invalid':  controlDispositivo.camara.touched && controlDispositivo.camara.errors}" />
+
+                                                                                <div *ngIf="controlDispositivo.camara.errors" class="invalid-feedback">
+                                                                                    <div *ngIf="controlDispositivo.camara.errors.required">
+                                                                                        <p>
+                                                                                            Se require la camara
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <p>
+                                                                                    Procesador
+                                                                                </p>
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <input type="text"  name="Procesador"
+                                                                                    class="form-control"
+                                                                                    formControlName="procesador"
+                                                                                     [ngClass]="{'is-invalid':  controlDispositivo.procesador.touched && controlDispositivo.procesador.errors}" />
+
+                                                                                <div *ngIf="controlDispositivo.procesador.errors" class="invalid-feedback">
+                                                                                    <div *ngIf="controlDispositivo.procesador.errors.required">
+                                                                                        <p>
+                                                                                            Se require el procesador
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                Almacenamiento:
+                                                                            </div>
+                                                                            <div class="col">
+
+                                                                                <input type="text"  name="Almacenamiento"
+                                                                                    class="form-control"
+                                                                                    formControlName="almacenamiento"
+                                                                                     [ngClass]="{'is-invalid':  controlDispositivo.almacenamiento.touched && controlDispositivo.almacenamiento.errors}" />
+
+                                                                                <div *ngIf="controlDispositivo.almacenamiento.errors" class="invalid-feedback">
+                                                                                    <div *ngIf="controlDispositivo.almacenamiento.errors.required">
+                                                                                        <p>
+                                                                                            Se require el almacenamiento
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row" style="margin-top: 8px;">
+                                                                            <div class="col">
+                                                                                <p>
+                                                                                    Ram:
+                                                                                </p>
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <input type="text"  name="Ram"
+                                                                                    class="form-control"
+                                                                                    formControlName="ram"
+                                                                                     [ngClass]="{'is-invalid':  controlDispositivo.ram.touched && controlDispositivo.ram.errors}" />
+
+                                                                                <div *ngIf="controlDispositivo.ram.errors" class="invalid-feedback">
+                                                                                    <div *ngIf="controlDispositivo.ram.errors.required">
+                                                                                        <p>
+                                                                                            Se require la ram
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <p>
+                                                                                    Tipo bateria:
+                                                                                </p>
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <input type="text"  name="TipoBateria"
+                                                                                    class="form-control"
+                                                                                    formControlName="tipoBateria"
+                                                                                     [ngClass]="{'is-invalid':  controlDispositivo.tipoBateria.touched && controlDispositivo.tipoBateria.errors}" />
+
+                                                                                <div *ngIf="controlDispositivo.tipoBateria.errors" class="invalid-feedback">
+                                                                                    <div *ngIf="controlDispositivo.tipoBateria.errors.required">
+                                                                                        <p>
+                                                                                            Se require el tipo de la
+                                                                                            bateria
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row" style="margin-top: 8px;">
+                                                                            <div class="col">
+                                                                                Capacidad bateria:
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <input type="text"  name="CapacidadBateria"
+                                                                                    class="form-control"
+                                                                                    formControlName="capacidadBateria"
+                                                                                     [ngClass]="{'is-invalid':  controlDispositivo.capacidadBateria.touched && controlDispositivo.capacidadBateria.errors}" />
+
+                                                                                <div *ngIf="controlDispositivo.capacidadBateria.errors" class="invalid-feedback">
+                                                                                    <div *ngIf="controlDispositivo.capacidadBateria.errors.required">
+                                                                                        <p>
+                                                                                            Se require la capacidad de
+                                                                                            la bateria
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row" style="margin-top: 8px;">
+                                                                            <div class="col">
+                                                                                Tipo Proteccion
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <input type="text"  name="TipoProteccion"
+                                                                                    class="form-control"
+                                                                                    formControlName="tipoProteccion"
+                                                                                     [ngClass]="{'is-invalid':  controlDispositivo.tipoProteccion.touched && controlDispositivo.tipoProteccion.errors}" />
+
+                                                                                <div *ngIf="controlDispositivo.tipoProteccion.errors" class="invalid-feedback">
+                                                                                    <div *ngIf="controlDispositivo.tipoProteccion.errors.required">
+                                                                                        <p>
+                                                                                            Se require el tipo de la
+                                                                                            proteccion
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row" style="margin-top: 8px;">
+                                                                            <div class="col">
+                                                                                <p>
+                                                                                    Huella dactillar:
+                                                                                </p>
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <input type="text"  name="Huella"
+                                                                                    class="form-control"
+                                                                                    formControlName="huella"
+                                                                                     [ngClass]="{'is-invalid':  controlDispositivo.huella.touched && controlDispositivo.huella.errors}" />
+
+                                                                                <div *ngIf="controlDispositivo.huella.errors" class="invalid-feedback">
+                                                                                    <div *ngIf="controlDispositivo.huella.errors.required">
+                                                                                        <p>
+                                                                                            Se require la huella
+                                                                                            dactilar
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col d-flex justify-content-center">
+                                                                <button class="btn btn-outline-primary"
+                                                                    data-toggle="collapse"
+                                                                    data-target="#AñadirProductoPedido"
+                                                                    aria-expanded="false"
+                                                                    aria-controls="AñadirProductoPedido" type="submit"
+                                                                    (click)="onSubmitDispositivo()"
+                                                                    [disabled]="formularioRegistroDispositivo.invalid">
+                                                                    <span class="fas fa-user-plus"></span> añadir
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                        <div class="row" *ngIf="!dispositivoInexistente">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <p>
+                                                                        Marca y model:
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <p
+                                                                        *ngIf="dispositivoRegistrar&&dispositivoRegistrar.marca != undefined">
+                                                                        {{dispositivoRegistrar.marca +"
+                                                                        "+dispositivoRegistrar.modelo}}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <label>Cantidad a añadir:</label>
+                                                                <input type="number"  name="cantidad"
+                                                                    class="form-control" />
+                                                            </div>
+                                                            <div class="col">
+                                                                <hr style="visibility: hidden;">
+                                                                <button class="btn btn-outline-dark"
+                                                                    data-toggle="collapse"
+                                                                    data-target="#AñadirProductoPedido"
+                                                                    aria-expanded="false"
+                                                                    aria-controls="AñadirProductoPedido">
+                                                                    <span class="fas fa-plus"
+                                                                        style="margin-right: 0rem;"></span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr style="visibility: hidden;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="visibility: hidden;">
+                                    <div class="table-responsive">
+                                        <table class="table table-responsive-sm">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">codigo Producto</th>
+                                                    <th scope="col">cantidad</th>
+                                                    <th scope="col">Valor unitario</th>
+                                                    <th scope="col">Descuento</th>
+                                                    <th scope="col">Sub total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody *ngIf="facturaCompraGenerada">
+                                                <tr *ngFor="let detalle of facturaCompraGenerada.detallesFactura; index as i">
+                                                    <th scope="row">{{ i + 1 }}</th>
+                                                    <td>{{ detalle.codDispositivoMovil }} </td>
+                                                    <td>{{ detalle.cantidad }}</td>
+                                                    <td>{{ detalle.valorUnitario }}</td>
+                                                    <td>{{ detalle.valorDespuesDescuento }}</td>
+                                                    <td>{{ detalle.subtotal}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <hr style="visibility: hidden;">
+                                <div class="row d-flex justify-content-end">
+                                    <div class="col-sm-6 ">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><span class="fas fa-poll-h"></span>Totales.</h5>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p>
+                                                            Total:
+                                                        </p>
+                                                    </div>
+                                                    <div class="col">
+                                                        <p *ngIf="facturaCompraGenerada">
+                                                            {{facturaCompraGenerada.total}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p>
+                                                            Sub Total:
+                                                        </p>
+                                                    </div>
+                                                    <div class="col">
+                                                        <p *ngIf="facturaCompraGenerada">
+                                                            {{facturaCompraGenerada.subtotal}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p>
+                                                            Iva:
+                                                        </p>
+                                                    </div>
+                                                    <div class="col">
+                                                        <p *ngIf="facturaCompraGenerada">
+                                                            {{facturaCompraGenerada.iva}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr>
+                            </form>
+                        </div>
+
+                        <hr style="visibility: hidden;">
+                    </form>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
 </div>
