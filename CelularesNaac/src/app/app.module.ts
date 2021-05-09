@@ -9,6 +9,10 @@ import { JwtInterceptor } from './services/jwt.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PerfilLiderAvaluosComponent } from './CelularesNaac/perfil-lider-avaluos/perfil-lider-avaluos.component';
 import { BarraNavegacionComponent } from './barra-navegacion/barra-navegacion.component';
+import { PerfilProfecionalVentasComponent } from './CelularesNaac/perfil-profecional-ventas/perfil-profecional-ventas.component';
+import { PrincipalComponent } from './principal/principal.component';
+import { RouterModule } from '@angular/router';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -16,14 +20,20 @@ import { BarraNavegacionComponent } from './barra-navegacion/barra-navegacion.co
     AppComponent,
     LoginComponent,
     PerfilLiderAvaluosComponent,
-    BarraNavegacionComponent
+    BarraNavegacionComponent,
+    PerfilProfecionalVentasComponent,
+    PrincipalComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot([
+    { path: '', component: PrincipalComponent, pathMatch: 'full' }],
+    { relativeLinkResolution: 'legacy' })
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
   bootstrap: [AppComponent]

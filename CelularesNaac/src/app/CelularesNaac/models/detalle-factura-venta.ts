@@ -1,4 +1,4 @@
-export class DetalleFacturaCompra {
+export class DetalleFacturaVenta {
     codigo: string;
     codDispositivoMovil: string;
     porcentajeIva: number;

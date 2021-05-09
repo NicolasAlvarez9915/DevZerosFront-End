@@ -33,7 +33,11 @@ export class BarraNavegacionComponent implements OnInit {
       if (this.currentUser.rol == "Lider Avaluos") {
         this.router.navigate(['/PerfilLiderAvaluos']);
       } else {
-        //this.router.navigate(['/PerfilCliente']);
+        if (this.currentUser.rol == "Profecional Ventas") {
+          this.router.navigate(['/PerfilProfecionalVentas']);
+        } else {
+          this.router.navigate(['']);
+        }
       }
     }
   }

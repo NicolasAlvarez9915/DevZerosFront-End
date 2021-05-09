@@ -63,7 +63,7 @@
                     </button>
                 </div>
                 <div class="col text-center" style="margin-top: .1rem; max-width: 100%;">
-                    <h4>Prueba</h4>
+                    <h4>Lider de avaluos</h4>
                 </div>
                 <hr>
             </div>
@@ -333,7 +333,7 @@
                         <hr style="visibility: hidden;">
 
                         <div class="text-center" *ngIf="listaProveedores.length == 0">
-                            <h4>¡NO HAY CLIENTES REGISTRADOS!</h4>
+                            <h4>¡NO HAY Proveedores REGISTRADOS!</h4>
                         </div>
 
                         <div class="table-responsive">
@@ -839,21 +839,19 @@
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <p>
-                                                                        Marca y model:
+                                                                        Marca, modelo y cantidad actual:
                                                                     </p>
                                                                 </div>
                                                                 <div class="col">
-                                                                    <p
-                                                                        *ngIf="dispositivoRegistrar&&dispositivoRegistrar.marca != undefined">
-                                                                        {{dispositivoRegistrar.marca +"
-                                                                        "+dispositivoRegistrar.modelo}}
+                                                                    <p *ngIf="dispositivoRegistrar&&dispositivoRegistrar.marca != undefined">
+                                                                        {{dispositivoRegistrar.marca +", "+dispositivoRegistrar.modelo+" y "+dispositivoRegistrar.cantidad}}
                                                                     </p>
                                                                 </div>
                                                             </div>
                                                             <div class="col">
                                                                 <label>Cantidad a añadir:</label>
                                                                 <input type="number"  name="cantidad"
-                                                                    class="form-control" />
+                                                                    class="form-control" [(ngModel)]="cantidadDispositivo"/>
                                                             </div>
                                                             <div class="col">
                                                                 <hr style="visibility: hidden;">
@@ -861,7 +859,8 @@
                                                                     data-toggle="collapse"
                                                                     data-target="#AñadirProductoPedido"
                                                                     aria-expanded="false"
-                                                                    aria-controls="AñadirProductoPedido">
+                                                                    aria-controls="AñadirProductoPedido"
+                                                                    (click)="anadirDispositivoFacturaCompra()">
                                                                     <span class="fas fa-plus"
                                                                         style="margin-right: 0rem;"></span>
                                                                 </button>
@@ -882,7 +881,7 @@
                                                     <th scope="col">codigo Producto</th>
                                                     <th scope="col">cantidad</th>
                                                     <th scope="col">Valor unitario</th>
-                                                    <th scope="col">Descuento</th>
+                                                    <th scope="col">Descuento %</th>
                                                     <th scope="col">Sub total</th>
                                                 </tr>
                                             </thead>
@@ -955,9 +954,6 @@
                     </form>
                 </div>
             </div>
-
-
-
         </div>
     </div>
 </div>

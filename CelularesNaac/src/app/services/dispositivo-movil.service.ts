@@ -27,4 +27,12 @@ export class DispositivoMovilService {
       catchError(this.handleErrorService.handleError<DispositivoMovil>('Buscar Clientes', null))
     );
   }
+
+  todos(): Observable<DispositivoMovil[]>{
+    return this.http.get<DispositivoMovil[]>(this.baseUrl+'api/DispositivoMovil')
+    .pipe(
+      tap(_ => this.handleErrorService.log('Encontrado')),
+      catchError(this.handleErrorService.handleError<DispositivoMovil[]>('Buscar Clientes', null))
+    );
+  }
 }

@@ -1,0 +1,177 @@
+<div style="min-height: 80vh;">
+    <div class="row justify-content-center" style="padding: 1rem;" *ngIf='listaDispositivos && listaDispositivos.length'>
+        <div class="col text-center producto" style="min-width:  290px ;max-width: min-content;"
+            *ngFor="let producto of listaDispositivos; index as i">
+            <div id="img" style="background-color: rgb(233, 236, 239); border-radius: 20px;">
+    
+                <div class="row">
+                    <div class="col">
+                        <img [src]="producto.imagen|| 'assets/images.png'" class="img-fluid" width="200px" alt="no imagen">
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    Marca:
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p>
+                                    {{producto.marca}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    Modelo:
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p>
+                                    {{producto.modelo}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>
+                                    Precio Venta:
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p>
+                                    {{producto.precioVenta}}
+                                </p>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    Cantidad:
+                                </div>
+                                <div class="col">
+                                    <P>
+                                        {{producto.cantidad}}
+                                    </P>
+                                </div>
+                            </div>
+    
+                            <div class="row" style="margin-top: 8px;">
+                                <div class="col">
+                                    <p>
+                                        Tipo Pantalla:
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <p>
+                                        {{producto.tipoPantalla}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+    
+    
+                       
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <p>
+                                        Resolucion:
+                                    </p>
+                                </div>
+                                <p>
+                                    {{producto.resolucion}}
+                                </p>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p>
+                                        Camara
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <p>
+                                        {{producto.camara}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p>
+                                        Procesador
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <p>
+                                        {{producto.procesador}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    Almacenamiento:
+                                </div>
+                                <div class="col">
+    
+                                    <p>
+                                        {{producto.almacenamiento}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 8px;">
+                                <div class="col">
+                                    <p>
+                                        Ram:
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <p>
+                                        {{producto.ram}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+    
+                            <div class="row">
+                                <div class="col">
+                                    <p>
+                                        Tipo bateria:
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <p>
+                                        {{producto.tipoBateria}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 8px;">
+                                <div class="col">
+                                    Capacidad bateria:
+                                </div>
+                                <div class="col">
+                                    <p>
+                                        {{producto.capacidadBateria}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 8px;">
+                                <div class="col">
+                                    Tipo Proteccion
+                                </div>
+                                <div class="col">
+                                    <p>
+                                        {{producto.tipoProteccion}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+                <hr style="visibility: hidden;">
+            </div>
+        </div>
+    </div>
+</div>

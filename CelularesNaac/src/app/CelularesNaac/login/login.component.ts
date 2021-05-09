@@ -66,7 +66,11 @@ export class LoginComponent implements OnInit {
             if (x.rol == "Lider Avaluos") {
               this.router.navigate(['/PerfilLiderAvaluos']);
             } else {
-              //this.router.navigate(['/PerfilCliente']);
+              if(x.rol == "Profecional Ventas"){
+                this.router.navigate(['/PerfilProfecionalVentas']);
+              }else{
+                this.router.navigate(['']);
+              }
             }
           }
         });

@@ -31,6 +31,7 @@ export class PerfilLiderAvaluosComponent implements OnInit {
   selectedFile: string;
   nitProveedorBuscar: string;
   dispositivoInexistente: boolean = false;
+  cantidadDispositivo: number = 0;
 
   listaClientes: Interesado[];
   listaProveedores: Proveedor[];
@@ -77,6 +78,20 @@ export class PerfilLiderAvaluosComponent implements OnInit {
     this.clienteActualizar.telefono = "";
     this.clienteActualizar.nombres = "";
     this.clienteActualizar.apellidos = "";
+  }
+
+  anadirDispositivoFacturaCompra(){
+    this.dispositivoRegistrar.cantidad=this.cantidadDispositivo;
+    this.listaDispositivosCompra.unshift(this.dispositivoRegistrar);
+    if (this.proveedorEncontrado.nit == undefined) {
+      alert("Debe buscar un proveedor");
+    } else {
+      this.facturaCompraService.generarFactura(this.listaDispositivosCompra, this.proveedorEncontrado).subscribe(
+        r => {
+          this.facturaCompraGenerada = r;
+        }
+      )
+    }
   }
 
   registrarFactura() {
@@ -163,7 +178,6 @@ export class PerfilLiderAvaluosComponent implements OnInit {
         this.facturaCompraService.generarFactura(this.listaDispositivosCompra, this.proveedorEncontrado).subscribe(
           r => {
             this.facturaCompraGenerada = r;
-            alert(this.facturaCompraGenerada.total);
           }
         )
       }
@@ -200,7 +214,6 @@ export class PerfilLiderAvaluosComponent implements OnInit {
       this.imagen = <File>event.target.files[0];
       this.extraerBase64(this.imagen).then((r: any) => {
         this.selectedFile = r.base;
-        alert(r.base)
       })
     }
   }

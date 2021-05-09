@@ -14,6 +14,7 @@ import { SolicitudFacturaCompra } from '../CelularesNaac/models/solicitud-factur
 export class FacturaCompraService {
   baseUrl: string = "https://localhost:5001/";
   constructor(private http: HttpClient,private handleErrorService: HandleHttpErrorService) { }
+
   generarFactura(dispositivos: DispositivoMovil[], proveedor: Proveedor): Observable<FacturaCompra>{
     var solicitud: SolicitudFacturaCompra = new SolicitudFacturaCompra();
     solicitud.dispositivos = dispositivos;
@@ -25,6 +26,15 @@ export class FacturaCompraService {
       catchError(this.handleErrorService.handleError<FacturaCompra>('Buscar Clientes', null))
     );
   }
+
+  buscarFacturaDispositivo(codigo: string): Observable<FacturaCompra[]>{
+    return this.http.get<FacturaCompra[]>(this.baseUrl+'api/FacturaCompra/Dispositivo/'+codigo)
+    .pipe(
+      tap(_ => this.handleErrorService.log('Encontrado')),
+      catchError(this.handleErrorService.handleError<FacturaCompra[]>('Buscar Clientes', null))
+    );
+  }
+
   registrar(factura: FacturaCompra): Observable<FacturaCompra>{
     return this.http.post<FacturaCompra>(this.baseUrl+'api/FacturaCompra',factura)
     .pipe(

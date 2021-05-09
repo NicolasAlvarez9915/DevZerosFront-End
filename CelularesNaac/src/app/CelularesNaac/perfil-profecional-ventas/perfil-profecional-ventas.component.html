@@ -1,0 +1,449 @@
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <div id="sidebar" [ngClass]="{'active':  activa}">
+        <div class="TituloBarra">
+            <h5><span class="fas fa-user-cog spanBarra"></span>Profecional de Ventas</h5>
+        </div>
+        <hr>
+        <p>
+            <button class="btnbarra" style="width: 100%; " type="bootton" data-toggle="collapse"
+                data-target="#collapseOpsClientes" aria-expanded="false" aria-controls="collapseOpsClientes">
+                <span class="fas fa-users spanBarra"></span>Clientes
+            </button>
+        </p>
+        <div class=" collapse OpsMenu" id="collapseOpsClientes">
+            <hr>
+            <button class="btnbarra" style="width: 100%; " type="bootton" data-toggle="collapse"
+                data-target="#collapseOpsClientes" aria-expanded="false" aria-controls="collapseOpsClientes"
+                (click)="mostrar ='RegistrarVenta';">
+                <span class="fas fa-user-plus spanBarra"></span>Registrar Ventas
+            </button>
+            <hr>
+        </div>
+        <p>
+            <button class="btnbarra" style="width: 100%; " type="bootton" data-toggle="collapse"
+                data-target="#collapseOpsProveedores" aria-expanded="false" aria-controls="collapseOpsProveedores">
+                <span class="fas fa-parachute-box spanBarra"></span>Productos
+            </button>
+        </p>
+        <div class=" collapse OpsMenu" id="collapseOpsProveedores">
+            <hr>
+            <button class="btnbarra" style="width: 100%; " type="bootton" data-toggle="collapse"
+                data-target="#collapseOpsProveedores" aria-expanded="false" aria-controls="collapseOpsProveedores"
+                (click)="mostrar = 'Productos'">
+                <span class="fas fa-parachute-box spanBarra"></span>Lista
+            </button>
+            <hr>
+        </div>
+    </div>
+
+    <!-- Page Content Holder -->
+    <div id="content" style="width: 100%;">
+        <div class="navbar-header">
+            <div class="row barraTituloContenido">
+                <div class="col" style="max-width: 50px;">
+                    <button type="button" id="sidebarCollapse" class="btn btnMenu"
+                        style="border-radius: 50%; margin-top: .1rem;" (click)="activa = !activa">
+                        <span class="fas fa-bars" style="margin-right: 0rem;"></span>
+                    </button>
+                </div>
+                <div class="col text-center" style="margin-top: .1rem; max-width: 100%;">
+                    <h4>Profecional de Ventas</h4>
+                </div>
+                <hr>
+            </div>
+            <div *ngIf="mostrar == 'Productos'">
+                <div class="Cuerpo">
+                    <form class="col font-weight-normal">
+                        <div class="text-center" style="margin-top: 1rem;">
+                            <h5>Productos</h5>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <label>Filtro por codigo.</label>
+                                <input class="form-control col-5" type="text" style="width: 200px;"
+                                    placeholder="Identificacion" 
+                                    [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="col d-flex justify-content-end" style="padding-top: 2rem;">
+                                <button class="btn btn-outline-dark" style="width: 50%;" type="reset"
+                                    (click)="mostrar = 'Principal'">
+                                    <span class="fas fa-chevron-left"></span>Volver
+                                </button>
+                            </div>
+                        </div>
+
+                        <hr style="visibility: hidden;">
+
+                        <div class="text-center" *ngIf="listadispositivos.length == 0">
+                            <h4>¡NO HAY productos REGISTRADOS!</h4>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-responsive" *ngIf='listadispositivos && listadispositivos.length'>
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">codigo</th>
+                                        <th scope="col">Marca</th>
+                                        <th scope="col">Modelo</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Precio compra</th>
+                                        <th scope="col">Precio venta</th>
+                                        <th scope="col">Resolucion</th>
+                                        <th scope="col">Procesador</th>
+                                        <th scope="col">Almacenamiento</th>
+                                        <th scope="col">Ram</th>
+                                        <th scope="col">Camara</th>
+                                        <th scope="col">Capacidad bateria</th>
+                                        <th scope="col">Tipo proteccion</th>
+                                        <th scope="col">opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let dispositivo of listadispositivos; index as i">
+                                        <th scope="row">{{ i + 1 }}</th>
+                                        <td>{{ dispositivo.codigo }} </td>
+                                        <td>{{ dispositivo.marca }}</td>
+                                        <td>{{ dispositivo.modelo }}</td>
+                                        <td>{{ dispositivo.cantidad }}</td>
+                                        <td>{{ dispositivo.precioCompra }}</td>
+                                        <td>{{ dispositivo.precioVenta }} </td>
+                                        <td>{{ dispositivo.resolucion }} </td>
+                                        <td>{{ dispositivo.procesador }} </td>
+                                        <td>{{ dispositivo.almacenamiento }} </td>
+                                        <td>{{ dispositivo.ram }} </td>
+                                        <td>{{ dispositivo.camara }} </td>
+                                        <td>{{ dispositivo.capacidadBateria }} </td>
+                                        <td>{{ dispositivo.tipoProteccion }} </td>
+                                        <td><button class="btn btn-outline-primary"
+                                                (click)="verFacturasDispositivos(dispositivo)">ver</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
+                    </form>
+                </div>
+            </div>
+            <div *ngIf="mostrar == 'Producto'">
+                <div class="Cuerpo">
+                    <form>
+                        <div class="text-center" style="margin-top: 1rem;">
+                            <h5>dispositivo: {{dispositivoConsulta.marca}} - {{dispositivoConsulta.modelo}}</h5>
+                        </div>
+                        <div class="col d-flex justify-content-end">
+                            <button class="btn btn-outline-dark" (click)="mostrar = 'Clientes'">
+                                <span class="fas fa-chevron-left"></span> Volver
+                            </button>
+                        </div>
+                        <hr>
+                        <div class="info">
+                            <h5>facturas de compra.</h5>
+                            <div class="row">
+                                <div class="text-center" *ngIf="listaFcaturasCompra.length == 0">
+                                    <h4>¡NO HAY productos REGISTRADOS!</h4>
+                                </div>
+        
+                                <div class="table-responsive">
+                                    <table class="table table-responsive" *ngIf='listaFcaturasCompra && listaFcaturasCompra.length'>
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">codigo</th>
+                                                <th scope="col">Fecha</th>
+                                                <th scope="col">Nit proveedor</th>
+                                                <th scope="col">Sub total</th>
+                                                <th scope="col">iva</th>
+                                                <th scope="col">descuento</th>
+                                                <th scope="col">total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let dispositivo of listaFcaturasCompra; index as i">
+                                                <th scope="row">{{ i + 1 }}</th>
+                                                <td>{{ dispositivo.codigo }} </td>
+                                                <td>{{ dispositivo.fecha }}</td>
+                                                <td>{{ dispositivo.idProveedor }}</td>
+                                                <td>{{ dispositivo.subtotal }}</td>
+                                                <td>{{ dispositivo.iva }}</td>
+                                                <td>{{ dispositivo.descuento }} </td>
+                                                <td>{{ dispositivo.total }} </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <hr>
+                    </form>
+                </div>
+            </div>
+            <div *ngIf="mostrar == 'RegistrarVenta'">
+                <div class="row  container-fluid justify-content-center">
+                    <form class="col">
+                        <div class="text-center">
+                            <h5>Registrar Venta</h5>
+                        </div>
+                        <hr>
+                        <div class="Cuerpo">
+                            <form class="font-weight-normal col" id="" style="margin-top: 1rem;">
+                                <div>
+                                    <div class=" row">
+                                        <div class="col">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <h5 class="card-title"><span
+                                                                    class="fas fa-user"></span>Cliente.</h5>
+                                                            <hr>
+                                                            <div class="col">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <label for="">Identificacion</label>
+                                                                        <input type="text"  name="Identificacion"  placeholder="Identificacion"
+                                                                            class="form-control" [(ngModel)]="idInteresado"/>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <label for="" class="row"
+                                                                            style="visibility: hidden;">Telefono</label>
+                                                                        <button class="btn btn-outline-primary"
+                                                                            style=" max-height: min-content;"
+                                                                            type="submit"  (click)="buscarIntersado()">
+                                                                            <span class="fas fa-user-plus"></span>
+                                                                            Buscar
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                <hr style="visibility: hidden;">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <p>
+                                                                            Nombre:
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <p *ngIf="!interesadoNuevo">
+                                                                            {{interesadoEncontrado.nombres}}
+                                                                        </p>
+                                                                        <input *ngIf="interesadoNuevo" type="text" [(ngModel)]="interesadoEncontrado.nombre" name="nombreInteresado">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <h5 class="card-title"><span
+                                                                    class="fas fa-calendar-alt"></span>Fecha.
+                                                            </h5>
+                                                            <hr>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <p>
+                                                                        Fecha:
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <p *ngIf="facturaVentaGenerada">
+                                                                        {{facturaVentaGenerada.fechaFactura}}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="visibility: hidden;">
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="col d-flex justify-content-center">
+                                            <button class="btn btn-outline-dark" data-toggle="collapse"
+                                                data-target="#AñadirProductoPedido" aria-expanded="false"
+                                                aria-controls="AñadirProductoPedido">
+                                                <span class="fas fa-search"></span> Añadir producto
+                                            </button>
+                                        </div>
+                                        <div class="col d-flex justify-content-center">
+                                            <button class="btn btn-outline-dark" (click)="registrarFactura()">
+                                                <span class="fas fa-search"></span> Registrar Factura
+                                            </button>
+                                        </div>
+                                        <div class="col d-flex justify-content-center">
+                                            <button class="btn btn-outline-dark" (click)="mostrar = 'Principal';">
+                                                <span class="icon-arrow-left1"></span>Volver
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="collapse" id="AñadirProductoPedido">
+                                        <hr style="visibility: hidden;">
+                                        <div class="col-sm-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title"><span class="fas fa-plus"></span>Producto.</h5>
+                                                    <hr>
+                                                    <div style="margin-bottom: .5rem; font-size: .4cm;">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label>Referencia:</label>
+                                                                <input type="text"  name="buscarDispositivo" class="form-control" [(ngModel)]="codigoDispositivo" />
+                                                            </div>
+                                                            <div class="col">
+                                                                <hr style="visibility: hidden;">
+                                                                <button class="btn btn-outline-dark" (click)="buscarDispositivo()">
+                                                                    <span class="fas fa-search" style="margin-right: 0rem;"></span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label>Marca y modelo:</label>
+                                                            </div>
+                                                            <div class="col">
+                                                                <p *ngIf="dispositivoEncontrado">
+                                                                    {{dispositivoEncontrado.modelo}}, {{dispositivoEncontrado.marca}}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+            
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label>Cantidad Actual:</label>
+                                                            </div>
+                                                            <div class="col">
+                                                                <p *ngIf="dispositivoEncontrado">
+                                                                    {{dispositivoEncontrado.cantidad}}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label>Porcentaje de descuento:</label>
+                                                            </div>
+                                                            <div class="col">
+                                                                <p *ngIf="dispositivoEncontrado">
+                                                                    <input type="number"  name="porcentajeDescuentoo" class="form-control" [(ngModel)]="dispositivoEncontrado.porcentajeDescuento" />
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label>Valor unitario:</label>
+                                                            </div>
+                                                            <div class="col">
+                                                                <p *ngIf="dispositivoEncontrado">
+                                                                    <input type="number"  name="valor" class="form-control" [(ngModel)]="dispositivoEncontrado.precioVenta" />
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label>Cantidad a añadir:</label>
+                                                                <input type="number"  name="cantidad" class="form-control" [(ngModel)]="cantidadDispositvo"/>
+                                                            </div>
+                                                            <div class="col">
+                                                                <hr style="visibility: hidden;">
+                                                                <button class="btn btn-outline-dark" (click)="anadirDispositivoFacturaVenta()"
+                                                                    data-toggle="collapse" data-target="#AñadirProductoPedido"
+                                                                    aria-expanded="false" aria-controls="AñadirProductoPedido">
+                                                                    <span class="fas fa-plus" style="margin-right: 0rem;"></span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <hr style="visibility: hidden;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="visibility: hidden;">
+                                    <div class="table-responsive">
+                                        <table class="table table-responsive-sm">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">codigo Producto</th>
+                                                    <th scope="col">cantidad</th>
+                                                    <th scope="col">Valor unitario</th>
+                                                    <th scope="col">Descuento %</th>
+                                                    <th scope="col">Sub total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody *ngIf="facturaVentaGenerada">
+                                                <tr *ngFor="let detalle of facturaVentaGenerada.detallesFactura; index as i">
+                                                    <th scope="row">{{ i + 1 }}</th>
+                                                    <td>{{ detalle.codDispositivoMovil }} </td>
+                                                    <td>{{ detalle.cantidad }}</td>
+                                                    <td>{{ detalle.valorUnitario }}</td>
+                                                    <td>{{ detalle.porcentajeDescuento }}</td>
+                                                    <td>{{ detalle.subtotal}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <hr style="visibility: hidden;">
+                                <div class="row d-flex justify-content-end">
+                                    <div class="col-sm-6 ">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><span class="fas fa-poll-h"></span>Totales.</h5>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p>
+                                                            Total:
+                                                        </p>
+                                                    </div>
+                                                    <div class="col">
+                                                        <p *ngIf="facturaVentaGenerada">
+                                                            {{facturaVentaGenerada.total}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p>
+                                                            Sub Total:
+                                                        </p>
+                                                    </div>
+                                                    <div class="col">
+                                                        <p *ngIf="facturaVentaGenerada">
+                                                            {{facturaVentaGenerada.subtotal}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p>
+                                                            Iva:
+                                                        </p>
+                                                    </div>
+                                                    <div class="col">
+                                                        <p *ngIf="facturaVentaGenerada">
+                                                            {{facturaVentaGenerada.iva}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr>
+                            </form>
+                        </div>
+
+                        <hr style="visibility: hidden;">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
